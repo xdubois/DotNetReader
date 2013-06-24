@@ -26,6 +26,10 @@ Qu'est-ce que le type de synchronisation ?
 | Partial       |               |       |   x   |
 | Manual        |   x   |       |       |
 
+Appel Cron ?
+-------------------------
+http://yourServer/Feed/UpdateAll/YourSynchroCode
+
 
 Quelles sont les modes de Display ?
 ----------
