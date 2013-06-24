@@ -1,0 +1,44 @@
+﻿@model DotNetReader.Models.FeedUpdateInfo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Change feed information</legend>
+
+         @Html.HiddenFor(model => model.FeedID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+     <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryID",(SelectList)ViewBag.CategoryList)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" class="btn" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

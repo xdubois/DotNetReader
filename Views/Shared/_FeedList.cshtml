@@ -1,0 +1,48 @@
+﻿@using LinqGrouping.Models
+@model List<Group<DotNetReader.Models.FeedListItems, String>>
+
+
+
+<hr />
+<ul class="nav nav-list">
+
+        <li><a href="@Url.Action("Views", "Feed", new { slug = "All" })"><i class="icon-fire"></i><strong>
+             All items (@Model.Sum(x => x.Values.Sum(s => s.NewItemsCount)))
+                                                
+            
+             </strong></a></li>
+        <li><a href="@Url.Action("Views", "Feed", new { slug = "Star" })"><i class="icon-star"></i> Starred items (@Model.Sum(x => x.Values.Sum(s => s.Stared)))</a></li>
+ </ul>
+    <hr />
+  <ul class="nav nav-list">  
+@foreach (var grp in Model)
+{
+    var total = grp.Values.Sum(tot => tot.NewItemsCount);
+    if(@grp.Key == null){
+      <li class="nav-header"> Uncategorized (@total)</li>
+    }
+       else{
+          <li class="nav-header"> @grp.Key (@total)</li>
+    }
+    foreach (var item in grp.Values)
+    {
+        String link = @item.Name + " (" + @item.NewItemsCount + ")";
+         <li> @Html.ActionLink(link , "View", new { id=item.Id })</li>
+    }
+
+    
+    
+}
+</ul>
+    <hr />
+
+
+<p>
+@using(Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+    @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()"class="btn btn-Action btn-larg" >Log off</a>
+    } 
+
+</p>
+
+    

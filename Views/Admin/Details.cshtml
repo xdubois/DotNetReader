@@ -1,0 +1,78 @@
+﻿@model DotNetReader.Models.UserProfile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserProfile</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eventRead)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eventRead)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eventDownloaded)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eventDownloaded)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eventClicked)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eventClicked)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.feedMaxEvent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.feedMaxEvent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SynchronisationType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SynchronisationType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.articleDisplayType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.articleDisplayType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SynchroCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SynchroCode)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId },new { @class = "btn" }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

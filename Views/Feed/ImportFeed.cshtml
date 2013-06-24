@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "ImportFeeds";
+}
+
+<h2>ImportFeeds</h2>
+
+<p>
+    Import done ! @ViewBag.Valid feeds imported<br />
+    Only valid feed was imported.
+    Please update the app to get the last articles from the feeds.
+    </p>
+    <p>    @Html.ActionLink("Update", "UpdateAll", "Feed", null, new { @class = "btn" })
+        </p>
+

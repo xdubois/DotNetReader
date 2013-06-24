@@ -1,0 +1,163 @@
+﻿@model PagedList.PagedList<DotNetReader.Models.Event>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="span12">
+    @if (ViewContext.RouteData.Values["Action"] == "Views")
+    {
+         <h2>@ViewBag.FeedTitle</h2>
+    }
+    else{
+         <h2>@ViewBag.FeedTitle  @Html.ActionLink("Mark all as read", "MarkAllAsRead", "Feed", new { id = ViewBag.id }, new { @class = "btn" })</h2>
+    }
+  
+
+@foreach (var item in Model) {
+<div class="dubois-post" id="@item.EventID">    
+<div class="row-fluid">
+    <div class="span9">
+        <h2>
+            @if (item.Unread == null ||item.Unread == true)
+            {
+                <a href="@item.Link" class="item-click" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a> 
+            }
+            else
+            {
+                 <a href="@item.Link" class="item-click" style="color:black;" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a> 
+            }       
+        </h2>
+       <p>
+            @if (item.Content.IsEmpty())
+            {
+                 @Html.Raw(item.Description)
+            }
+            else{
+                @Html.Raw(item.Content)
+            }
+           </p>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span6">
+
+            @if(item.Favorite == true){
+                <i class="stared icon-star"> </i>
+            }
+            else{
+                 <i class="stared icon-star-empty"></i> 
+            }
+            
+            Favorite
+
+              @if(item.Unread == true){
+                <input type="checkbox" checked="checked" class="unread" />
+            }
+            else{
+                  <input type="checkbox"  class="unread"  />
+            }
+
+         Keep Unread
+        
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="@item.Link" data-text="@item.Title">Tweet</a>
+            <div class="g-plus" data-action="share" data-href="@item.Link" ></div>
+        </div>
+        <div class="span3">
+        <p class="text-right"><em>@item.Creator @item.Pubdate</em></p>
+        </div>
+    </div>
+
+
+    </div>
+    <hr />
+</div>
+}
+    <div>
+         @Html.Partial("_ArticlesPagination")
+   
+</div>
+    <div id="margin-item">
+        <p class="muted text-center">You have no more items.</p>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+     <script type="text/javascript">
+         (function () {
+             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+             po.src = 'https://apis.google.com/js/plusone.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+         })();
+</script>
+    
+    
+    <script src="/Scripts/jquery.waypoints.min.js"></script>
+    
+    <script type="text/javascript">
+   
+        $(function () {
+            var margin = $(window).height() * 0.8;
+            $("#margin-item").css("height", margin);
+            $("#margin-item > p").css("padding-top", margin/2);
+
+
+            $("i.stared").click(function () {
+                $(this).toggleClass("icon-star-empty icon-star");
+                var id = $(this).parents(".dubois-post").attr("id");
+                var posting = $.post('@Url.Action("SetItemFavorite")', { id: id });
+                posting.done(function (data) {
+                    $("#content-feed").html(data);
+
+                });
+            });
+
+            $(".item-click").click(function () {
+
+                var id = $(this).parents(".dubois-post").attr("id");
+                var posting = $.post('@Url.Action("UpdateItemClicked")', { id: id });
+            });
+
+
+            $(".unread").click(function () {
+                var id = $(this).parents(".dubois-post").attr("id");
+                var unread = $(this).is(":checked");
+                var t = $(this).parents(".dubois-post").find("h2").find("a");
+                var posting = $.post('@Url.Action("SetItemUnread")', { id: id, unread: unread });
+                posting.done(function (data) {
+                   if(unread)
+                       t.css("color", "#0088CC");
+                   else
+                       t.css("color", "black");
+
+                   $("#content-feed").html(data);
+                });
+            });
+
+
+
+                $('.dubois-post').waypoint(function (direction) {
+                    if (direction == "down") {
+
+                        var t = $(this).find("h2").find("a");
+                        var id = $(this).attr("id");
+                       
+                        var posting = $.post('@Url.Action("setItemRead")', { id: id });
+                        posting.done(function (data) {
+                            $("#content-feed").html(data);
+          
+                            if (data != "") {
+                                t.css("color", "black");
+                               
+                            }
+                        });
+
+
+                    }
+                });
+            });
+    
+        </script>
+}   

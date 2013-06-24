@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DotNetReader.Models.UserProfile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administration Panel</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventDownloaded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventClicked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.feedMaxEvent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SynchronisationType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.articleDisplayType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SynchroCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventPerPage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventRead)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventDownloaded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventClicked)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.feedMaxEvent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SynchronisationType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.articleDisplayType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SynchroCode)
+        </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.EventPerPage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>
+
+<h3>Global Stats</h3>
+<dl class="dl-horizontal">
+    <dt>GloBalEventRead</dt>
+    <dd>@ViewBag.GloBalEventRead</dd>
+
+    <dt>GloBalEventClicked</dt><dd>@ViewBag.GloBalEventClicked</dd>
+    <dt>GlobalEventDownload</dt><dd>@ViewBag.GlobalEventDownload</dd>
+
+    <dt>Read download ratio</dt>
+    @if (ViewBag.GlobalEventDownload > 0)
+    {
+    <dd>@((float)ViewBag.GloBalEventRead/ViewBag.GlobalEventDownload*100) %</dd>
+        
+    }
+ 
+
+</dl>
+

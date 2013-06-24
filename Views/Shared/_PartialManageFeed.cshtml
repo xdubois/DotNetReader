@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DotNetReader.Models.Feed>
+
+<div id="content-anus">
+<div class="row">
+    <div class="span10 offset1">
+        <h2>List of feeds</h2>
+
+<p>
+       @Html.ActionLink("Add New", "Create",null, new { @class= "btn"})
+</p> 
+
+<table class="table">
+    <tr>
+         <th>
+            @Html.DisplayNameFor(model => model.Lastupdate)
+        </th>
+        <th>
+           Feeds    
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+
+        <th>Update</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+                <td>
+            @Html.DisplayFor(modelItem => item.Lastupdate)
+        </td>
+        <td>
+            <p> <a href="@item.Website">@item.Name</a><br />
+            <em> @Html.DisplayFor(modelItem => item.Description)</em><br />
+
+                  <small>@item.Url</small>
+
+            </p>
+        </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.FeedID })
+
+            <a href="javascript:void(0)" id="@item.FeedID" class="confirmLink">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
+ </div>
+</div>
+
+    </div>

@@ -1,0 +1,71 @@
+﻿@model DotNetReader.Models.EditProfile
+
+@{
+    ViewBag.Title = "Edit Profile";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UserProfile</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+  
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.feedMaxEvent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.feedMaxEvent)
+            @Html.ValidationMessageFor(model => model.feedMaxEvent)
+        </div>
+
+            <div class="editor-label">
+            @Html.LabelFor(model => model.EventPerPage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EventPerPage)
+            @Html.ValidationMessageFor(model => model.EventPerPage)
+        </div>
+       
+     <div class="editor-label">
+            @Html.LabelFor(model => model.articleDisplayType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("articleDisplayType",(SelectList)ViewBag.DisplayTypeList);
+        </div>
+
+          <div class="editor-label">
+            @Html.LabelFor(model => model.SynchronisationType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SynchronisationType",(SelectList)ViewBag.SynchroTypeList);
+        </div>
+
+
+        
+
+
+        <p>
+            <input type="submit" value="Save" class="btn" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to dashboard", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

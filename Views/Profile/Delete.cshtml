@@ -1,0 +1,74 @@
+﻿@model DotNetReader.Models.UserProfile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>UserProfile</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eventRead)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eventRead)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eventDownloaded)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eventDownloaded)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eventClicked)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eventClicked)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.feedMaxEvent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.feedMaxEvent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SynchronisationType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SynchronisationType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.articleDisplayType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.articleDisplayType)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

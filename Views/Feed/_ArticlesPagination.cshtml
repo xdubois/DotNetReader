@@ -1,0 +1,69 @@
+﻿     Page 
+    @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of 
+    @Model.PageCount
+@if (ViewContext.RouteData.Values["Action"] == "Views")
+ {
+    if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Views", new { slug = ViewBag.Slug, page = 1  })
+        @Html.ActionLink("< Prev", "Views", new { slug = ViewBag.Slug, page = Model.PageNumber - 1   })    
+    }
+    else{
+        @:<<
+        @Html.Raw(" ");
+        @:< Prev    
+    }
+     
+    if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Next >", "Views", new {slug = ViewBag.Slug, page = Model.PageNumber + 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "Views", new { slug = ViewBag.Slug, page = Model.PageCount  })
+    }
+    else
+    {
+        @:Next >
+        @Html.Raw(" ")
+        @:>>
+    }
+        
+        
+        
+ }
+else{
+     
+    if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "View", new { id = ViewBag.id, page = 1  })
+        @Html.Raw(" ");
+        @Html.ActionLink("< Prev", "View", new { id = ViewBag.id, page = Model.PageNumber - 1   })    
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Prev
+    }
+     
+    if (Model.HasNextPage)
+    {
+        @Html.ActionLink(" Next >", "View", new {id = ViewBag.id, page = Model.PageNumber + 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "View", new { id = ViewBag.id, page = Model.PageCount  })
+    }
+    else
+    {
+        @:Next >
+        @Html.Raw(" ")
+        @:>>
+    }
+   
+ }
+
+
+         
+
+         
+      
+   
