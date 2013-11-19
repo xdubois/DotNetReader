@@ -26,7 +26,7 @@ Qu'est-ce que le type de synchronisation ?
 | Partial       |               |       |   x   |
 | Manual        |   x   |       |       |
 
-Appel Cron ?
+Appel Cron 
 -------------------------
 http://yourServer/Feed/UpdateAll/YourSynchroCode
 
@@ -47,16 +47,6 @@ Valeur entre 1 et 100
 
 Définit le nombre d'articles que l'application doit garder en cache
 
-/!\ Plus le nombre est élevé plus le temps de synchronisation sera lent 
-NB flux*NB Cache, on arrive facilement à plusieurs centaines d'ajout dans la base de données
-Valeur max conseillée 30
+/!\ Plus le nombre est élevé plus le temps de synchronisation sera lent
 
 
-Article per page ?
--------------------------
-Valeur entre 1 et 100
-
-
-Définit le nombre d'article que l'on veut afficher par page.
-
-Valeur conseillé 10-20
